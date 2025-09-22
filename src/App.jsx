@@ -12,23 +12,26 @@ const fetchPlayers= ()=>
 fetch('/players.json')
 .then(res=> res.json())
 
+
+const playersPromise= fetchPlayers()
 function App() {
   
 const[toggle , setToggle]= useState(true)
 
+const [availableBalance, setAvailableBalance]=useState(15000)
 
 
-const playersPromise= fetchPlayers()
+
   return (
     <>
- <div className="navbar max-w-[1200px] mx-auto mt-7">
+ <div availableBalance={availableBalance} className="navbar max-w-[1200px] mx-auto mt-7">
   <div className="flex-1">
     <a className="btn btn-ghost text-xl">
       <img className='w-[60px] h-[60px]' src={navImg} alt="" />
     </a>
   </div>
   <div className="flex items-center">
-   <span className='mr-2'>6000000000</span>
+   <span className='mr-2'>{availableBalance}</span>
    <span className='mr-2'> Coin</span>
    <img src={dollarImg} alt="" />
   </div>
@@ -50,7 +53,7 @@ const playersPromise= fetchPlayers()
 
 {
   toggle === true? <Suspense  fallback={<span className="loading loading-dots loading-xl"></span>}>
-  <Availableplayers playersPromise={playersPromise}></Availableplayers>
+  <Availableplayers availableBalance={availableBalance} setAvailableBalance={setAvailableBalance} playersPromise={playersPromise}></Availableplayers>
 </Suspense> : <SelectedPlayers></SelectedPlayers>
 }
 
