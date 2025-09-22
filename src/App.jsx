@@ -8,7 +8,7 @@ import SelectedPlayers from './components/SelectedPlayers/SelectedPlayers'
 import { Suspense, useState } from 'react'
 
 
-const fetchPlayers= async()=>
+const fetchPlayers= ()=>
 fetch('/players.json')
 .then(res=> res.json())
 
@@ -21,7 +21,7 @@ const[toggle , setToggle]= useState(true)
 const playersPromise= fetchPlayers()
   return (
     <>
- <div className="navbar max-w-[1200px] mx-auto">
+ <div className="navbar max-w-[1200px] mx-auto mt-7">
   <div className="flex-1">
     <a className="btn btn-ghost text-xl">
       <img className='w-[60px] h-[60px]' src={navImg} alt="" />
@@ -59,7 +59,7 @@ const playersPromise= fetchPlayers()
 
 
 
-
+<br /> <br />
     </>
   )
 }

@@ -1,9 +1,12 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import userImg from '../../assets/Group.png'
 import flagImg from '../../assets/report-1.png'
 const Availableplayers = ({playersPromise}) => {
     const playerData = use(playersPromise)
     console.log(playerData)
+
+const [isSelected, setIsSelected]= useState({})
+
     return (
         <div className='max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-4'>
           
@@ -43,7 +46,8 @@ const Availableplayers = ({playersPromise}) => {
 
     <div className="card-actions mt-4 flex justify-between items-center">
         <p>Price: {player.price} </p>
-      <button className="btn ">Choose Player</button>
+      <button   disabled={isSelected[player.id]}
+                  onClick={() => setIsSelected(players => ({ ...players, [player.id]: true }))} className="btn ">{isSelected[player.id] ? "Selected" : "Choose Player"}</button>
     </div>
   </div>
 </div>)
