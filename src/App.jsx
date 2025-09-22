@@ -5,7 +5,7 @@ import dollarImg from './assets/DoubleDollar.png'
 
 import Availableplayers from './components/AvailablePlayers/Availableplayers'
 import SelectedPlayers from './components/SelectedPlayers/SelectedPlayers'
-import { Suspense } from 'react'
+import { Suspense, useState } from 'react'
 
 
 const fetchPlayers= async()=>
@@ -14,6 +14,10 @@ fetch('/players.json')
 
 function App() {
   
+const[toggle , setToggle]= useState(true)
+
+
+
 const playersPromise= fetchPlayers()
   return (
     <>
@@ -28,14 +32,33 @@ const playersPromise= fetchPlayers()
    <span className='mr-2'> Coin</span>
    <img src={dollarImg} alt="" />
   </div>
+
+
 </div>
 
-<Suspense fallback={<span className="loading loading-dots loading-xl"></span>}>
+
+<div className='flex justify-between items-center max-w-[1180px] mx-auto'>
+<h1 className='font-bold text-2xl'>Available Players</h1>
+
+<div className='font-bold'>
+  <button onClick={()=> setToggle(true)} className={`py-3 px-4 border-1 border-gray-400 rounded-l-2xl border-r-0 ${toggle===true? "bg-yellow-900": ""}`}>Available</button>
+  <button onClick={()=>setToggle(false)} className={`py-3 px-4 border-1 border-gray-400 rounded-r-2xl border-l-0 ${toggle===false ? "bg-yellow-900" : ""}`}>Selected 
+    <span> (0)</span>
+  </button>
+</div>
+</div>
+
+{
+  toggle === true? <Suspense  fallback={<span className="loading loading-dots loading-xl"></span>}>
   <Availableplayers playersPromise={playersPromise}></Availableplayers>
-</Suspense>
+</Suspense> : <SelectedPlayers></SelectedPlayers>
+}
 
 
-{/* <SelectedPlayers></SelectedPlayers> */}
+
+
+
+
 
     </>
   )
