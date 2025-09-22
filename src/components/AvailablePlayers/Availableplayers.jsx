@@ -3,17 +3,16 @@ import userImg from '../../assets/Group.png'
 import flagImg from '../../assets/report-1.png'
 
 
-const Availableplayers = ({playersPromise, availableBalance ,setAvailableBalance}) => {
+const Availableplayers = ({playersPromise, availableBalance ,setAvailableBalance, selectedPlayers,setSelectedPlayers}) => {
     const playerData = use(playersPromise)
-    console.log(playerData)
-
+    
 const [isSelected, setIsSelected]= useState({})
 
     return (
-        <div className='max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-4'>
+        <div className='max-w-[1200px]  mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 mt-10'>
           
 {
-    playerData.map(player=><div setAvailableBalance={setAvailableBalance} className="card bg-base-100  shadow-sm p-4">
+    playerData.map(player=><div selectedPlayers={selectedPlayers} setSelectedPlayers={setSelectedPlayers} setAvailableBalance={setAvailableBalance} className="card bg-base-100  shadow-sm p-4">
   <figure>
     <img className='w-full h-[300px] object-cover'
       src={player.image}
@@ -60,6 +59,7 @@ const [isSelected, setIsSelected]= useState({})
 
                     setIsSelected(players => ({ ...players, [player.id]: true }))
                     setAvailableBalance(availableBalance => availableBalance - playerPrice)
+                    setSelectedPlayers(...selectedPlayers, playerData)
                   }
                   } className="btn ">{isSelected[player.id] ? "Selected" : "Choose Player"}</button>
     </div>

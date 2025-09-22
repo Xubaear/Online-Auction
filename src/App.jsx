@@ -20,6 +20,7 @@ const[toggle , setToggle]= useState(true)
 
 const [availableBalance, setAvailableBalance]=useState(15000)
 
+const [selectedPlayers, setSelectedPlayers]= useState([])
 
 
   return (
@@ -53,8 +54,8 @@ const [availableBalance, setAvailableBalance]=useState(15000)
 
 {
   toggle === true? <Suspense  fallback={<span className="loading loading-dots loading-xl"></span>}>
-  <Availableplayers availableBalance={availableBalance} setAvailableBalance={setAvailableBalance} playersPromise={playersPromise}></Availableplayers>
-</Suspense> : <SelectedPlayers></SelectedPlayers>
+  <Availableplayers selectedPlayers={selectedPlayers} availableBalance={availableBalance} setAvailableBalance={setAvailableBalance} setSelectedPlayers={setSelectedPlayers} playersPromise={playersPromise}></Availableplayers>
+</Suspense> : <SelectedPlayers selectedPlayers={selectedPlayers}></SelectedPlayers>
 }
 
 
