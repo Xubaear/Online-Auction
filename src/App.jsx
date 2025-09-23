@@ -22,6 +22,11 @@ const [availableBalance, setAvailableBalance]=useState(15000)
 
 const [selectedPlayers, setSelectedPlayers]= useState([])
 
+const removePlayer= (x)=>{
+const filterdData= selectedPlayers.filter(ply => ply.id !== x.id)
+setSelectedPlayers(filterdData)
+setAvailableBalance(availableBalance+parseInt(x.price.split("$").join("")))
+}
 
   return (
     <>
@@ -57,7 +62,7 @@ const [selectedPlayers, setSelectedPlayers]= useState([])
 {
   toggle === true? <Suspense  fallback={<span className="loading loading-dots loading-xl"></span>}>
   <Availableplayers selectedPlayers={selectedPlayers} availableBalance={availableBalance} setAvailableBalance={setAvailableBalance} setSelectedPlayers={setSelectedPlayers} playersPromise={playersPromise}></Availableplayers>
-</Suspense> : <SelectedPlayers selectedPlayers={selectedPlayers}></SelectedPlayers>
+</Suspense> : <SelectedPlayers removePlayer ={removePlayer} selectedPlayers={selectedPlayers}></SelectedPlayers>
 }
 
 
