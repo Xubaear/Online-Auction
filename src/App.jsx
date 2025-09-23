@@ -1,7 +1,7 @@
 import './App.css'
 import navImg from './assets/logo.png'
 import dollarImg from './assets/DoubleDollar.png'
-
+import { ToastContainer } from 'react-toastify';
 
 import Availableplayers from './components/AvailablePlayers/Availableplayers'
 import SelectedPlayers from './components/SelectedPlayers/SelectedPlayers'
@@ -18,7 +18,7 @@ function App() {
   
 const[toggle , setToggle]= useState(true)
 
-const [availableBalance, setAvailableBalance]=useState(15000)
+const [availableBalance, setAvailableBalance]=useState(150000)
 
 const [selectedPlayers, setSelectedPlayers]= useState([])
 
@@ -71,6 +71,7 @@ setAvailableBalance(availableBalance+parseInt(x.price.split("$").join("")))
 
 
 <br /> <br />
+<ToastContainer />
     </>
   )
 }

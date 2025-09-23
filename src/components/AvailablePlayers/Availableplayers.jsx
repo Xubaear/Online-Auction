@@ -1,7 +1,8 @@
 import React, { use, useState } from 'react';
 import userImg from '../../assets/Group.png'
 import flagImg from '../../assets/report-1.png'
-
+import { toast } from 'react-toastify';
+ 
 
 const Availableplayers = ({playersPromise, availableBalance ,setAvailableBalance, selectedPlayers,setSelectedPlayers}) => {
     const playerData = use(playersPromise)
@@ -53,8 +54,12 @@ const [isSelected, setIsSelected]= useState({})
                     const playerPrice =parseInt(player.price.split("$").join(""))
                     
                     if(availableBalance< playerPrice){
-                        alert('not enough coin')
+                        toast('Insuficiant Coins!')
                         return
+                    }
+                    if(selectedPlayers.length===6){
+                      toast('6 players already selected!')
+                      return
                     }
 
                     setIsSelected(players => ({ ...players, [player.id]: true }))
