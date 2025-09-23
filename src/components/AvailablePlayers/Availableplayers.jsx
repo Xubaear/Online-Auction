@@ -12,7 +12,7 @@ const [isSelected, setIsSelected]= useState({})
         <div className='max-w-[1200px]  mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 mt-10'>
           
 {
-    playerData.map(player=><div selectedPlayers={selectedPlayers} setSelectedPlayers={setSelectedPlayers} setAvailableBalance={setAvailableBalance} className="card bg-base-100  shadow-sm p-4">
+    playerData.map(player=><div selectedPlayers={selectedPlayers} setSelectedPlayers={setSelectedPlayers} setAvailableBalance={setAvailableBalance} className="card   shadow-sm p-4">
   <figure>
     <img className='w-full h-[300px] object-cover'
       src={player.image}
@@ -59,7 +59,7 @@ const [isSelected, setIsSelected]= useState({})
 
                     setIsSelected(players => ({ ...players, [player.id]: true }))
                     setAvailableBalance(availableBalance => availableBalance - playerPrice)
-                    setSelectedPlayers(...selectedPlayers, playerData)
+                    setSelectedPlayers([...selectedPlayers, player])
                   }
                   } className="btn ">{isSelected[player.id] ? "Selected" : "Choose Player"}</button>
     </div>

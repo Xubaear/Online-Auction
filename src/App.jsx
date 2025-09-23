@@ -42,12 +42,14 @@ const [selectedPlayers, setSelectedPlayers]= useState([])
 
 
 <div className='flex justify-between items-center max-w-[1180px] mx-auto'>
-<h1 className='font-bold text-2xl'>Available Players</h1>
+<h1 className='font-bold text-2xl'>{
+  toggle === true? 'Available Players':`Selected Players (${selectedPlayers.length}/6)`
+  }</h1>
 
 <div className='font-bold'>
   <button onClick={()=> setToggle(true)} className={`py-3 px-4 border-1 border-gray-400 rounded-l-2xl border-r-0 ${toggle===true? "bg-yellow-900": ""}`}>Available</button>
   <button onClick={()=>setToggle(false)} className={`py-3 px-4 border-1 border-gray-400 rounded-r-2xl border-l-0 ${toggle===false ? "bg-yellow-900" : ""}`}>Selected 
-    <span> (0)</span>
+    <span> ({selectedPlayers.length})</span>
   </button>
 </div>
 </div>
